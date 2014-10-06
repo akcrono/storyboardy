@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-    root 'users/1'
+  root 'stories#index'
 
   devise_scope :user do
     get 'login', to: "devise/sessions#new", as: :login
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'register', to: "devise/registrations#new", as: :register
   end
   resources :users, only: [:show]
+  resources :stories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

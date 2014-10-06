@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006180629) do
+ActiveRecord::Schema.define(version: 20141006191657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "stories", force: true do |t|
+    t.string   "title",       null: false
+    t.string   "first_entry", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",       null: false
@@ -27,10 +35,10 @@ ActiveRecord::Schema.define(version: 20141006180629) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "username"
+    t.string   "username",                                  null: false
     t.string   "avatar"
     t.text     "description"
-    t.string   "role",                   default: "member"
+    t.string   "role",                   default: "member", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

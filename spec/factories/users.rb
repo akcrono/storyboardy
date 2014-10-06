@@ -1,0 +1,15 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "frank#{n}@tank.com" }
+    sequence(:username) { |n| "frank#{n}" }
+    password 'abcd1234'
+
+    trait :admin do
+      role 'admin'
+    end
+
+    factory :admin, traits: [:admin]
+  end
+end

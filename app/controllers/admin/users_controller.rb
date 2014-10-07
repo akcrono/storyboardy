@@ -9,10 +9,20 @@ module Admin
 
     def update
       user = User.find(params[:id])
-      user.role = params[:role]
-      user.save
-      flash[:notice] = "User has been set as Admin"
-      redirect_to root_path
+
+      if user.update(user_params)
+        flash[:notice] = "User has been set as Admin"
+        redirect_to root_path
+      else
+        flash[:notice] = "Invalid entry"
+        render :new
+      end
+    end
+
+    private
+
+    def user_params
+      params.require(:user).permit(:role)
     end
   end
 end

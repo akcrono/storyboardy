@@ -15,6 +15,11 @@
     method: :delete,
     data: { confirm: "Are you sure?" } %>
 <% end %>
-<% if current_user && current_user.admin? && @user != current_user%>
-  <%= link_to 'Make user admin', admin_user_path(@user), method: :put, class: "button small", params: { role: "admin" } %>
+<% if current_user && current_user.admin? && @user != current_user %>
+  <%= simple_form_for @user, url: admin_user_path(@user) do |f| %>
+    <%= f.input :role, :as => :hidden, input_html: { value: "admin" } %>
+    <%= f.button :submit, "Make user admin" %>
+    <% end %>
 <% end %>
+
+

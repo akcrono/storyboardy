@@ -8,6 +8,7 @@
 </head>
 <body>
 <div>
+  <%= link_to "Home", root_path %>
   <% if current_user %>
   <%= link_to current_user.username, user_path(current_user) %>
     <%= link_to "Sign out", logout_path %>

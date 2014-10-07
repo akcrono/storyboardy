@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         authentication_keys: [:username]
+         authentication_keys: [:login]
 
   attr_accessor :login
 

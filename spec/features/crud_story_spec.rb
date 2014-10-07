@@ -19,6 +19,15 @@ feature 'User creates a story' do
     expect(page).to have_content "taco time"
   end
 
+  scenario 'User writes an invalid review' do
+    sign_in_as(user)
+    visit new_story_path
+    fill_in "First entry", with: 'It was the time of the taco'
+    click_button "Create Story"
+
+    expect(page).to have_content "Invalid entry"
+  end
+
   let(:story) { FactoryGirl.create(:story) }
   scenario 'User edits his review' do
     visit story_path(story)
@@ -30,6 +39,17 @@ feature 'User creates a story' do
 
     expect(page).to have_content "Your story was edited."
     expect(page).to have_content "pizza time"
+  end
+
+  scenario 'User edits his review with a blank title' do
+    visit story_path(story)
+    sign_in_as(story.user)
+    visit edit_story_path(story)
+    fill_in "Title", with: ''
+    fill_in "First entry", with: 'It was the time of pizza'
+    click_button "Update Story"
+
+    expect(page).to have_content "Invalid entry"
   end
 
   scenario "User tries to edit someone else's review" do

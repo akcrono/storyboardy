@@ -1,0 +1,25 @@
+<h4><%= @user.username %></h4>
+<p>Email: <%= @user.email %></p>
+<p>Bio: <%= @user.description %></p>
+<%= user_avatar(@user) %>
+<% if @user.admin? %>
+  <h5>ADMIN</h5>
+<% end %>
+
+<% if @user == current_user %>
+  <%= link_to 'Edit Profile', edit_user_registration_path %><br>
+<% end %>
+
+<% if current_user && current_user.admin? || @user == current_user%>
+  <%= link_to 'Delete User (Admin Rights)', admin_user_path(@user),
+    method: :delete,
+    data: { confirm: "Are you sure?" } %>
+<% end %>
+<% if current_user && current_user.admin? && @user != current_user %>
+  <%= simple_form_for @user, url: admin_user_path(@user) do |f| %>
+    <%= f.input :role, :as => :hidden, input_html: { value: "admin" } %>
+    <%= f.button :submit, "Make user admin" %>
+    <% end %>
+<% end %>
+
+

@@ -1,0 +1,6 @@
+<%= button_to "New Story", new_story_path, method: :get %>
+<ul>
+  <% @stories.each do |story| %>
+    <li><%= link_to story.title, story_path(story) %></li>
+  <% end %>
+</ul>

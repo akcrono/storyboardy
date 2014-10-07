@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+  - 2.1.2
+before_script:
+  - psql -c 'create database storyboardy_test;' -U postgres
+branches:
+  except: "/app/uploaders/avatar_uploader.rb"

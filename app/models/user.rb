@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   has_many :stories
+  has_many :submissions
   validates :username,
     uniqueness: { case_sensitive: false },
     presence: true
     validates :email,
     uniqueness: { case_sensitive: false },
     presence: true
+  validates :encrypted_password, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,

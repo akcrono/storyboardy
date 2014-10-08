@@ -8,8 +8,18 @@ Rails.application.routes.draw do
     get 'logout', to: "devise/sessions#destroy", as: :logout
     get 'register', to: "devise/registrations#new", as: :register
   end
+
   resources :users, only: [:show]
-  resources :stories
+
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
+
+  scope concerns: :paginatable do
+    resources :stories do
+      resources :submissions, only: [:new, :create, :edit, :update, :destroy]
+    end
+  end
 
   namespace :admin do
     resources :users, only: [:update, :destroy]

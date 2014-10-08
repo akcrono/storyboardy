@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_user_for_action?(author)
+    current_user == author || current_user.admin? ? true : false
+  end
+
   def authorize_user!
     unless current_user
       redirect_to root_path, notice: "You must be signed in to do this."

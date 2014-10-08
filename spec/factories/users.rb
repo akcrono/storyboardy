@@ -10,6 +10,11 @@ FactoryGirl.define do
       role 'admin'
     end
 
+    trait :invalid_user do
+      username ''
+    end
+
     factory :admin, traits: [:admin]
+    factory :invalid_user, traits: [:invalid_user]
   end
 end

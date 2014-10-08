@@ -23,6 +23,8 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+    @submission = Submission.new
+    @submissions = @story.submissions.order(:created_at).page(params[:page]).per(10)
   end
 
   def edit

@@ -60,7 +60,7 @@ feature 'User creates a story' do
      expect(page).to have_content "You aren't signed in as the original author."
   end
 
-  scenario 'User destroys his review' do
+  scenario 'User destroys his story' do
     visit story_path(story)
     sign_in_as(story.user)
     visit story_path(story)

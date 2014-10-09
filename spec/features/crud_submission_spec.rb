@@ -29,14 +29,6 @@ feature 'User creates a submission' do
 
    expect(page).to have_content "Submission deleted."
   end
-# Need proper delete route for this method
-  # let(:submission) { FactoryGirl.create(:submission) }
-  # scenario 'User attempts to destroys other user\'s submission' do
-  #   sign_in_as(user)
-  #   delete "/stories/#{submission.story.id}/submissions/#{submission.id}"
-
-  #  expect(page).to have_content "You aren't signed in as the original author."
-  # end
 
   # scenario 'User creates a submission with markdown' do
         # save_and_open_page

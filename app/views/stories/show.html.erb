@@ -1,15 +1,20 @@
 <h3><%= @story.title %></h3>
+<%= render template: "votes/show", locals: { story: @story} %>
 <p><%= @story.first_entry %></p>
-<ul>
 <% @submissions.each do |submission| %>
-  <li>
-    <%= submission.body %>
-    <%= button_to 'Delete Submission', "/stories/#{@story.id}/submissions/#{submission.id}", method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
-  </li>
+  <div style="width:333px">
+    <div style="float:right">
+      <%= submission.body %>
+      <%= render "submissionvotes", locals: { submission: submission } %>
+      <%= button_to 'Delete Submission', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
+    </div>
+    <div style="float:left">
+    up
+    </div>
+  </div>
 <% end %>
-</ul>
 <% if current_user %>
-  <%= simple_form_for(@submission, url: "/stories/#{@story.id}/submissions/") do |f| %>
+  <%= simple_form_for([@story, @submission]) do |f| %>
 
       <%= f.input :body, required: true, autofocus: true, as: :text, label: "Add your submission below:", input_html: { rows: 10 } %>
 

@@ -14,8 +14,10 @@ class ApplicationController < ActionController::Base
 
   def authorize_user_for_action!(author)
     unless current_user == author || current_user.admin?
-      redirect_to root_path, notice: "You aren't signed in as the original author."
+      permission_denied
     end
+
+    false
   end
 
   def authorize_user_for_action?(author)
@@ -26,6 +28,11 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_to root_path, notice: "You must be signed in to do this."
     end
+  end
+
+  def permission_denied
+    # render text: 'Bad credentials', status: 401
+    render file: "public/401.html", :status => :unauthorized
   end
 
   def authorize_admin!

@@ -12,17 +12,13 @@ describe StoriesController do
       response.should render_template :index
     end
   end
-# These don't work either for some reason
-  # describe "GET #show" do
-  #   it "assigns the requested story to @story" do
-  #     story = FactoryGirl.create(:story)
-  #     get :show, id: story
-  #     assigns(:story).should eq(story)
-  #   end
 
-  #   it "renders the #show view" do
-  #     get :show, id: FactoryGirl.create(:story)
-  #     response.should render_template :show
-  #   end
+  # before do
+  #   user = FactoryGirl(:user)
+  #   request.env['warden'].stub :authenticate! => user
+  #   allow(controller).to receive(:current_user) { user }
   # end
+
+
+
 end

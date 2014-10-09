@@ -10,7 +10,7 @@ feature 'User Priviledges' do
     expect(page).to have_content 'User has been deleted'
   end
 
-  scenario 'Admin makes another user an Admin' do
+  scenario 'Admin makes another user an admin' do
     sign_in_as(admin)
     visit user_path(user)
     click_on 'Make user admin'

@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Storyboardy</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div>
-  <%= link_to "Home", root_path %>
-  <% if current_user %>
-  <%= link_to current_user.username, user_path(current_user) %>
-    <%= link_to "Sign out", logout_path %>
-  <% else %>
-    <%= link_to 'Sign In', login_path %>
-  <% end %>
-  <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-  <% end %>
-</div>
-<%= yield %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-</body>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <div class="contain-to-grid sticky">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">StoryBoardy</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 1</a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

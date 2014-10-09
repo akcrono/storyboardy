@@ -1,9 +1,13 @@
-<% if  current_user %>
-  <%= current_user.username %>
-<% end %>
+
 <%= button_to "New Story", new_story_path, method: :get %>
-<ul>
+<div style="width:222px">
   <% @stories.each do |story| %>
-    <li><%= link_to story.title, story_path(story) %></li>
+    <div style="float:right">
+      <div><%= link_to story.title, story_path(story) %></div>
+      <div>SCORE</div>
+    </div>
+    <div style="float:left">
+      <%= render template: "votes/show", locals: { story: story} %>
+    </div>
   <% end %>
-</ul>
+</div>

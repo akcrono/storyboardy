@@ -7,5 +7,8 @@ class CreateSubmissions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :submissions, :user_id
+    add_index :submissions, :story_id
   end
 end

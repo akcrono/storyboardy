@@ -1,10 +1,15 @@
 class Submission < ActiveRecord::Base
   belongs_to :user
   belongs_to :story
-  paginates_per 10
+  has_many :votes, as: :voteable
+
 
   validates :body, presence: true
   validates :user, presence: true
   validates :story, presence: true
 
+
+  def vote_score
+    votes.sum(:value)
+  end
 end

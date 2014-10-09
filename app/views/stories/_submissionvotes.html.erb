@@ -1,0 +1,19 @@
+<div class="submission-votes">
+  <div class="vote-container">
+    <% if current_user && current_user.voted_on?(locals[:submission], "Submission") == 1 %>
+      <%= link_to "UP", story_submission_vote_path(locals[:submission].story_id, locals[:submission], 1), method: :put, class: "submission-upvote"%>
+    <% else %>
+      <%= link_to "up", story_submission_vote_path(locals[:submission].story_id, locals[:submission], 1), method: :put, class: "submission-upvote" %>
+    <% end %>
+    <div class="vote-count">submission score: <%= locals[:submission].vote_score %></div>
+    <% if current_user && current_user.voted_on?(locals[:submission], "Submission") == -1 %>
+      <span class="vote-down">
+        <%= link_to "DOWN", story_submission_vote_path(locals[:submission].story_id, locals[:submission], -1), method: :put, class: "submission-downvote" %>
+      </span>
+    <% else %>
+      <span class="vote-down">
+        <%= link_to "down", story_submission_vote_path(locals[:submission].story_id, locals[:submission], -1), method: :put, class: "submission-downvote" %>
+      </span>
+    <% end %>
+  </div>
+</div>

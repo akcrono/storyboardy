@@ -57,7 +57,7 @@ feature 'User creates a story' do
     sign_in_as(user)
      visit edit_story_path(story)
 
-     expect(page).to have_content "You aren't signed in as the original author."
+     expect(page).to have_content "Forbidden (401)"
   end
 
   scenario 'User destroys his story' do

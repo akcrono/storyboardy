@@ -13,11 +13,6 @@ Rails.application.routes.draw do
   put "stories/:id/vote/:vote_value", to: "stories#vote", as: :story_vote
   put "stories/:story_id/submissions/:id/vote/:vote_value", to: "submissions#vote", as: :story_submission_vote
 
-
-  concern :paginatable do
-    get '(page/:page)', :action => :index, :on => :collection, :as => ''
-  end
-
   # scope concerns: :paginatable do
     resources :stories do
       resources :submissions, only: [:new, :create, :edit, :update, :destroy]

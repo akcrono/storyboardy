@@ -7,7 +7,7 @@ let(:user) { FactoryGirl.create(:user) }
     visit story_path(submission.story)
     find(".submission-upvote").click
     click_link "up"
-    expect(page).to have_content 'submission score: 1'
+    expect(page).to have_content '1'
   end
 
   scenario "user downvotes a submission" do
@@ -15,7 +15,7 @@ let(:user) { FactoryGirl.create(:user) }
     visit story_path(submission.story)
     find(".submission-downvote").click
 
-    expect(page).to have_content 'submission score: -1'
+    expect(page).to have_content '-1'
   end
 
   scenario "user deletes an upvote a submission" do
@@ -24,7 +24,7 @@ let(:user) { FactoryGirl.create(:user) }
     find(".submission-upvote").click
     find(".submission-upvote").click
 
-    expect(page).to have_content 'submission score: 0'
+    expect(page).to have_content '0'
   end
 
   scenario "user deletes a downvote a submission" do
@@ -34,7 +34,7 @@ let(:user) { FactoryGirl.create(:user) }
     find(".submission-downvote").click
     find(".submission-downvote").click
 
-    expect(page).to have_content 'submission score: 0'
+    expect(page).to have_content '0'
   end
 
   scenario "user changes a submission" do
@@ -44,6 +44,6 @@ let(:user) { FactoryGirl.create(:user) }
     find(".submission-upvote").click
     find(".submission-downvote").click
 
-    expect(page).to have_content 'submission score: -1'
+    expect(page).to have_content '-1'
   end
 end

@@ -9,6 +9,7 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 
 <body>
@@ -53,34 +54,22 @@
         </ul>
       </section>
     </nav>
+          <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
   </div>
+
   <div class="row">
-
-
     <div class="large-3 columns hide-for-small">
       <div class="panel">
-        <a href="#"><img src="http://placehold.it/300x240&text=[img]"/></a>
-        <h5><a href="#">Your Name</a></h5>
-        <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
-          <section class="section">
-            <h5 class="title"><a href="#">Section 1</a></h5>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#">Section 2</a></h5>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#">Section 3</a></h5>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#">Section 4</a></h5>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#">Section 5</a></h5>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#">Section 6</a></h5>
-          </section>
-        </div>
+      <% if current_user %>
+        <p class="text-center"><%= link_to current_user.username, user_path(current_user) %></p>
+        <div class="text-center"><%= button_to "New Story", new_story_path, method: :get, class: "fancy radius button" %></div>
+      <% else %>
+
+
+      <% end %>
+
       </div>
     </div>
 

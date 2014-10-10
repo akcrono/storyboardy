@@ -6,7 +6,8 @@ feature 'User Priviledges' do
   scenario 'Admin deletes an unruly user' do
     sign_in_as(admin)
     visit user_path(user)
-    click_on 'Delete User (Admin Rights)'
+    click_on 'Delete User'
+    # save_and_open_page
     expect(page).to have_content 'User has been deleted'
   end
 

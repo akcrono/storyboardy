@@ -55,9 +55,8 @@ feature 'User creates a story' do
   scenario "User tries to edit someone else's story" do
     visit story_path(story)
     sign_in_as(user)
-     visit edit_story_path(story)
 
-     expect(page).to have_content "Forbidden (401)"
+    expect{ visit edit_story_path(story) }.to raise_error(ActionController::RoutingError)
   end
 
   scenario 'User destroys his story' do

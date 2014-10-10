@@ -28,12 +28,12 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
     # render text: 'Bad credentials', status: 401
-    render file: "public/401.html", :status => :unauthorized
+    raise ActionController::RoutingError.new("Not Found")
   end
 
   def authorize_admin!
     unless current_user && current_user.admin?
-      redirect_to root_path, notice: "You do not have rights for this command."
+      permission_denied
     end
   end
 end

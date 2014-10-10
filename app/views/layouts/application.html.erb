@@ -57,21 +57,48 @@
   <div class="row">
 
 
-    <div class="large-9 push-3 columns">
+    <div class="large-3 columns hide-for-small">
+      <div class="panel">
+        <a href="#"><img src="http://placehold.it/300x240&text=[img]"/></a>
+        <h5><a href="#">Your Name</a></h5>
+        <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+          <section class="section">
+            <h5 class="title"><a href="#">Section 1</a></h5>
+          </section>
+          <section class="section">
+            <h5 class="title"><a href="#">Section 2</a></h5>
+          </section>
+          <section class="section">
+            <h5 class="title"><a href="#">Section 3</a></h5>
+          </section>
+          <section class="section">
+            <h5 class="title"><a href="#">Section 4</a></h5>
+          </section>
+          <section class="section">
+            <h5 class="title"><a href="#">Section 5</a></h5>
+          </section>
+          <section class="section">
+            <h5 class="title"><a href="#">Section 6</a></h5>
+          </section>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="large-6 columns">
+
       <%= yield %>
+
     </div>
-    <div class="large-3 pull-9 columns">
-      <ul class="side-nav">
-        <li><a href="#">Section 1</a></li>
-        <li><a href="#">Section 2</a></li>
-        <li><a href="#">Section 3</a></li>
-        <li><a href="#">Section 4</a></li>
-        <li><a href="#">Section 5</a></li>
-        <li><a href="#">Section 6</a></li>
-      </ul>
-      <p><img src="http://placehold.it/320x240&text=Ad"/></p>
-    </div>
+
+
+    <aside class="large-3 columns hide-for-small">
+      <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+      <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+    </aside>
   </div>
   <%= javascript_include_tag "application" %>
 </body>
 </html>
+
+

@@ -165,3 +165,11 @@ p {
   color: #468847;
 }
 
+@media #{$small-only} {
+  .mybutton {
+    width:100%;
+  }
+  .button-container {
+    text-align: center;
+  }
+}

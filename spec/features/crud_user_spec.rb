@@ -61,12 +61,12 @@ feature 'User changes user' do
   let(:user) { FactoryGirl.create(:user) }
   scenario 'User edits profile' do
     sign_in_as(user)
-    click_link user.username
+    first(:link, user.username).click
     click_link "Edit Profile"
 
     fill_in "Avatar", with: "http://www.southparkreviews.com/assets/stan-a7a0b4f320264fcb3abb3469a865cd73.png"
     fill_in "Bio", with: "Just a city boy, born and raised in south Detroit."
-    fill_in "Current password", with: "abcd1234"
+    fill_in "Current password", with: "qwertyuiop"
     click_button "Update"
 
     expect(page).to have_content "Your account has been updated successfully."
@@ -84,8 +84,7 @@ feature 'User changes user' do
 
   scenario 'User deletes profile' do
     sign_in_as(user)
-    click_link user.username
-    click_link "Edit Profile"
+    visit edit_user_registration_path(user)
     click_link "Cancel my account"
 
 

@@ -8,7 +8,7 @@ let(:user) { FactoryGirl.create(:user) }
     #find("#thumb-up").click
     click_link "up"
 
-    expect(page).to have_content 'score: 1'
+    expect(page).to have_content '1'
   end
 
   scenario "user downvotes a story" do
@@ -17,7 +17,7 @@ let(:user) { FactoryGirl.create(:user) }
     #find("#thumb-up").click
     click_link "down"
 
-    expect(page).to have_content 'score: -1'
+    expect(page).to have_content '-1'
   end
 
   scenario "user deletes an upvote a story" do
@@ -27,7 +27,7 @@ let(:user) { FactoryGirl.create(:user) }
     click_link "up"
     click_link "UP"
 
-    expect(page).to have_content 'score: 0'
+    expect(page).to have_content '0'
   end
 
   scenario "user deletes a downvote a story" do
@@ -37,7 +37,7 @@ let(:user) { FactoryGirl.create(:user) }
     click_link "down"
     click_link "DOWN"
 
-    expect(page).to have_content 'score: 0'
+    expect(page).to have_content '0'
   end
 
   scenario "user changes a story" do
@@ -47,6 +47,6 @@ let(:user) { FactoryGirl.create(:user) }
     click_link "up"
     click_link "down"
 
-    expect(page).to have_content 'score: -1'
+    expect(page).to have_content '-1'
   end
 end

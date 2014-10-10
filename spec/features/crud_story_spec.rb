@@ -10,7 +10,7 @@ feature 'User creates a story' do
 
   scenario 'User writes a story successfully' do
     sign_in_as(user)
-    click_button "New Story"
+    first(:button, "New Story").click
     fill_in "Title", with: 'taco time'
     fill_in "First entry", with: 'It was the time of the taco'
     click_button "Create Story"

@@ -14,10 +14,10 @@
   <h3>Vote for the next entry:</h3>
   <% @submissions.each do |submission| %>
   <div class="row">
-    <div class="large-2 columns">
+    <div class="large-1 columns">
       <%= render "submissionvotes", locals: { submission: submission } %>
     </div>
-    <div class="large-10 columns">
+    <div class="large-11 columns">
       <%= submission.body %>
       <% if current_user && (current_user.admin? || current_user.id == submission.user_id) %>
       <%= button_to 'Delete Submission', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>

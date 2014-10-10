@@ -1,13 +1,14 @@
 
 <%= button_to "New Story", new_story_path, method: :get %>
-<div style="width:222px">
-  <% @stories.each do |story| %>
-    <div style="float:right">
-      <div><%= link_to story.title, story_path(story) %></div>
-      <div>SCORE</div>
-    </div>
-    <div style="float:left">
-      <%= render template: "votes/show", locals: { story: story} %>
-    </div>
-  <% end %>
+<div>
+  <ul style="list-style-type: none"><% @stories.each do |story| %>
+  <div class="panel">
+      <div class= "body_div">
+        <p class="body_text"><%=1%>. <img class="arrow" src="images/grayarrow.gif"><a class="body_link" href="#"> <%= link_to story.title, story_path(story), class: "body_link" %></p>
+        <p class="body_description"> <%=story.first_entry%></p>
+        <p class="body_lower_data">VOTES <%=link_to story.user.username, user_path(story.user) %>
+        <%= story.created_at %> | <a class="body_lower_data" href="#">comments</a></p>
+      </div>
+</li></div>
+  <% end %></ul>
 </div>

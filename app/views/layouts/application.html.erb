@@ -28,14 +28,16 @@
           <li><a href="#">Link 1</a></li>
           <li><a href="#">Link 1</a></li>
           <li class="has-form">
-            <div class="row collapse">
-              <div class="large-8 small-9 columns">
-                <input type="text" placeholder="Find a story...">
+            <%= form_tag stories_path, method: 'get', class: "has-form" do %>
+              <div class="row collapse">
+                <div class="large-8 small-9 columns">
+                  <%= text_field_tag :search, nil, placeholder: "Search stories" %>
+                </div>
+                <div class="large-4 small-3 columns">
+                  <%= submit_tag "Search", name: nil, class: "alert button expand" %>
+                </div>
               </div>
-              <div class="large-4 small-3 columns">
-                <a href="#" class="button expand">Search</a>
-              </div>
-            </div>
+            <% end %>
           </li>
         </ul>
         <ul class="right">

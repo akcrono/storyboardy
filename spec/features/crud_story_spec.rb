@@ -19,6 +19,17 @@ feature 'User creates a story' do
     expect(page).to have_content "taco time"
   end
 
+  scenario 'User writes a story with markdown' do
+    sign_in_as(user)
+    first(:button, "New Story").click
+    fill_in "Title", with: 'taco time'
+    fill_in "First entry", with: '**bold** *italics*'
+    click_button "Create Story"
+
+    expect(page).to have_content "Your story was submitted."
+    expect(page).to_not have_content "**bold** *italics*"
+  end
+
   scenario 'User writes an invalid story' do
     sign_in_as(user)
     visit new_story_path

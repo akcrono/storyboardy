@@ -6,7 +6,7 @@
       </div>
       <div class="large-10 columns">
         <h4><%= @story.title %></h4>
-        <p><%= @story.first_entry %></p>
+        <p><%= render_markdown(@story.first_entry) %></p>
       </div>
     </div>
 
@@ -18,7 +18,7 @@
       <%= render "submissionvotes", locals: { submission: submission } %>
     </div>
     <div class="large-11 columns">
-      <%= submission.body %>
+      <%= render_markdown(submission.body) %>
       <% if current_user && (current_user.admin? || current_user.id == submission.user_id) %>
       <%= button_to 'Delete Submission', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
       <% end %>

@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'devise'
+gem 'redcarpet'
 gem 'kaminari'
 gem 'spring',        group: :development
 

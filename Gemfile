@@ -15,6 +15,8 @@ gem 'devise'
 gem 'redcarpet'
 gem 'kaminari'
 gem 'spring',        group: :development
+gem 'rails_12factor', group: :production
+
 
 group :development, :test do
   gem 'rails-erd', git: 'https://github.com/paulwittmann/rails-erd', branch: 'mavericks'

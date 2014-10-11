@@ -53,9 +53,9 @@
         null,
         null,
         1,
-        61,
-        61,
-        61,
+        64,
+        64,
+        64,
         null,
         null
       ],
@@ -138,7 +138,7 @@
       "/Users/administrator/Dropbox/launchacademy/storyboardy/app/controllers/stories_controller.rb": [
         1,
         1,
-        37,
+        39,
         null,
         null,
         1,
@@ -160,9 +160,9 @@
         null,
         null,
         1,
-        40,
-        40,
-        40,
+        42,
+        42,
+        42,
         null,
         null,
         1,
@@ -278,7 +278,21 @@
         1,
         null,
         1,
-        40,
+        42,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        39,
+        2,
+        null,
+        null,
+        null,
+        37,
+        null,
         null,
         null
       ],
@@ -321,6 +335,6 @@
         null
       ]
     },
-    "timestamp": 1412977764
+    "timestamp": 1413065586
   }
 }

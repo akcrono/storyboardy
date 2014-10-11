@@ -79,7 +79,25 @@ feature 'User creates a story' do
    expect(page).to have_content "Story deleted."
   end
 
+  scenario 'User searches for a story that doesn\' exist' do
 
+    visit story_path(story)
+    fill_in "search", with: 'pizza'
+    click_button "Search"
+
+    expect(page).to_not have_content "Pizza time"
+    expect(page).to_not have_content "Taco time"
+  end
+
+  scenario 'User searches for a story that doesn\' exist' do
+    other_story = FactoryGirl.create(:story, title: "Pizza time")
+    visit story_path(story)
+    fill_in "search", with: 'pizza'
+    click_button "Search"
+
+    expect(page).to have_content "Pizza time"
+    expect(page).to_not have_content "Taco time"
+  end
 
   # scenario 'User creates a review with markdown' do
         # save_and_open_page

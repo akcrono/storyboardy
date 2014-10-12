@@ -9,11 +9,8 @@ class SubmissionsController < ApplicationController
 
     if @submission.save
       flash[:notice] = "Your entry was submitted."
-      redirect_to story_path(@story)
-    else
-      flash[:notice] = "You need to add something!"
-      render :new
     end
+    redirect_to story_path(@story)
   end
 
   def destroy

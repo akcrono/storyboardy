@@ -13,9 +13,6 @@ module Admin
       if user.update(user_params)
         flash[:notice] = "User has been set as Admin"
         redirect_to root_path
-      else
-        flash[:notice] = "Invalid entry"
-        render :new
       end
     end
 

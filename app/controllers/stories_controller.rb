@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   def index
-    @stories = Story.populate_index_with(params)
+    @stories = Story.populate_index_with(params).page(params[:page])
   end
 
   def new

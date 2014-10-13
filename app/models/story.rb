@@ -24,4 +24,8 @@ class Story < ActiveRecord::Base
       Story.order(created_at: :desc)
     end
   end
+
+  def timestamp
+    created_at.strftime('%B %d %Y %H:%M:%S')
+  end
 end

@@ -3,15 +3,6 @@
     <%= button_to "New Story", new_story_path, method: :get, class: "fancy radius button mybutton" %>
   </div>
 </div>
-<div>
-  <ul style="list-style-type: none"><% @stories.each do |story| %>
-    <div class="panel">
-      <div class= "body_div">
-        <p class="body_text"> <%=  image_tag("check.bmp", class: "story_image", size: "20", tag: "andrew") %> <%= link_to story.title, story_path(story), class: "body_link" %></p>
-        <p class="body_description"> <%=render_markdown(story.first_entry)%></p>
-        <p class="body_lower_data">VOTES <%=story.user ? (link_to story.user.username, user_path(story.user)) : "[DELETED]"%>
-          <%= story.created_at %> | <a class="body_lower_data" href="#">comments</a></p>
-        </div>
-      </li></div>
-      <% end %></ul>
-    </div>
+<div class="stories">
+  <%= render @stories %>
+</div>

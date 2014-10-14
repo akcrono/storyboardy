@@ -1,10 +1,10 @@
 <div class="row">
   <div class="large-12 columns panel">
     <div class="row">
-    <div class="large-2 columns">
+      <div class="large-1 columns">
         <%= render template: "votes/show", locals: { story: @story} %>
       </div>
-      <div class="large-10 columns">
+      <div class="large-11 columns">
         <h4><%= @story.title %></h4>
         <p><%= render_markdown(@story.first_entry) %></p>
       </div>
@@ -19,22 +19,25 @@
     </div>
     <div class="large-11 columns">
       <%= render_markdown(submission.body) %>
-      <% if current_user && (current_user.admin? || current_user.id == submission.user_id) %>
-      <%= button_to 'Delete Submission', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
-      <% end %>
+      <p class="body_lower_data"> by <%=submission.user ? (link_to submission.user.username, user_path(submission.user)) : "[DELETED]"%>
+        <% if current_user && (current_user.admin? || current_user.id == submission.user_id) %>
+        |
+        <%= link_to 'Delete', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'} %><br>
+        <% end %></p>
+      </div>
     </div>
-  </div>
-  <% end %>
-  <% if current_user %>
-  <%= simple_form_for([@story, @submission]) do |f| %>
+    <br>
+    <% end %>
+    <% if current_user %>
+    <%= simple_form_for([@story, @submission]) do |f| %>
 
-  <%= f.input :body, required: true, as: :text, label: "Add your submission below:", input_html: { rows: 10 } %>
+    <%= f.input :body, required: true, as: :text, label: "Add your submission below:", input_html: { rows: 10 } %>
 
-  <%= f.button :submit, "Submit" %>
-  <% end %>
-  <% if current_user.admin? || current_user.id == @story.user_id %>
-  <%= button_to 'Delete Story', @story, method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
-  <% end %>
-  <% else %>
-  <%= link_to "Log in to add to this story!", login_path %>
-  <% end %>
+    <%= f.button :submit, "Submit" %>
+    <% end %>
+    <% if current_user.admin? || current_user.id == @story.user_id %>
+    <%= button_to 'Delete Story', @story, method: :delete, data: { confirm: 'Are you sure?'}, class: "button tiny alert radius"%><br>
+    <% end %>
+    <% else %>
+    <%= link_to "Log in to add to this story!", login_path %>
+    <% end %>

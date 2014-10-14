@@ -32,6 +32,7 @@ group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'shoulda-matchers'
+  gem 'betterlorem'
 end
 
 group :test do

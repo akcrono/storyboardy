@@ -25,7 +25,7 @@ feature 'User creates a submission' do
   scenario 'User destroys his submission' do
     sign_in_as(submission.user)
     visit story_path(submission.story)
-    click_button "Delete Submission"
+    click_link "Delete"
 
    expect(page).to have_content "Submission deleted."
   end

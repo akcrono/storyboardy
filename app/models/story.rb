@@ -31,9 +31,9 @@ class Story < ActiveRecord::Base
     elsif query[:newest]
       @astories = Story.order(created_at: :desc)
     elsif query[:top]
-      @stories = Story.top
+      @stories = Story.order(score: :desc)
     elsif query[:controvertial]
-      @stories = Story.controvertial
+      @stories = Story.order(votes_count: :desc)
     else
       Story.hot
     end

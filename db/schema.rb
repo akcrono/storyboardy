@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008200005) do
+ActiveRecord::Schema.define(version: 20141014191315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "stories", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "first_entry", null: false
-    t.integer  "user_id",     null: false
+    t.string   "title",                   null: false
+    t.string   "first_entry",             null: false
+    t.integer  "user_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "votes_count", default: 0, null: false
+    t.integer  "score",       default: 0, null: false
   end
 
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141008200005) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "votes_count", default: 0, null: false
   end
 
   add_index "submissions", ["story_id"], name: "index_submissions_on_story_id", using: :btree

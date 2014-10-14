@@ -68,21 +68,12 @@
         <p class="text-center"><%= link_to current_user.username, user_path(current_user) %></p>
         <div class="text-center"><%= button_to "New Story", new_story_path, method: :get, class: "fancy radius button" %></div>
       <% else %>
-
-
       <% end %>
-
       </div>
     </div>
-
-
     <div class="large-6 columns">
-
       <%= yield %>
-
     </div>
-
-
     <aside class="large-3 columns hide-for-small">
       <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
       <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
@@ -91,5 +82,3 @@
   <%= javascript_include_tag "application" %>
 </body>
 </html>
-
-

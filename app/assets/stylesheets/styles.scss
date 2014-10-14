@@ -158,7 +158,10 @@ p {
   line-height: 20px;
   text-align: center;
 }
+.submission_text {
+  display: none;
 
+}
 .notice{
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -172,4 +175,17 @@ p {
   .button-container {
     text-align: center;
   }
+}
+
+#panel,#flip
+{
+padding:5px;
+text-align:center;
+background-color:#f2f2f2;
+border:solid 1px #c3c3c3;
+}
+#panel
+{
+padding:50px;
+display:none;
 }

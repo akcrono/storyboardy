@@ -20,7 +20,7 @@ class Story < ActiveRecord::Base
     order(created_at: :desc)
   end
 
-  def self.controvertial
+  def self.controversial
     Story.select("stories.id, stories.title, stories.first_entry, stories.created_at, stories.user_id, count(votes.id) as votes_count").
       joins(:votes).group("stories.id").order("votes_count DESC")
   end
@@ -32,8 +32,8 @@ class Story < ActiveRecord::Base
       @astories = Story.order(created_at: :desc)
     elsif query[:top]
       @stories = Story.order(score: :desc)
-    elsif query[:controvertial]
-      @stories = Story.order(votes_count: :desc)
+    elsif query[:controversial]
+      @stories = Story.order(votes_count: :desc, score: :desc)
     else
       Story.hot
     end

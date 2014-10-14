@@ -1,7 +1,7 @@
 class Vote < ActiveRecord::Base
   belongs_to :user
   belongs_to :voteable,
-    polymorphic: true
+    polymorphic: true, counter_cache: true
 
   validates :user, presence: true
   validates :voteable_id, uniqueness: { scope: [:user_id, :voteable_type] }

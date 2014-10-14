@@ -7,6 +7,7 @@ class Story < ActiveRecord::Base
   validates :first_entry, presence: true
   validates :user, presence: true
 
+
   def vote_score
     votes.sum(:value)
   end
@@ -15,13 +16,26 @@ class Story < ActiveRecord::Base
     where('title ILIKE ?', "%#{search}%")
   end
 
+  def self.hot
+    order(created_at: :desc)
+  end
+
+  def self.controvertial
+    Story.select("stories.id, stories.title, stories.first_entry, stories.created_at, stories.user_id, count(votes.id) as votes_count").
+      joins(:votes).group("stories.id").order("votes_count DESC")
+  end
+
   def self.populate_index_with(query)
     if query[:search]
       Story.search(query[:search]).order(created_at: :desc)
-    # elsif query[:newest]
-    #   @astories = Story.order(created_at: :desc)
+    elsif query[:newest]
+      @astories = Story.order(created_at: :desc)
+    elsif query[:top]
+      @stories = Story.top
+    elsif query[:controvertial]
+      @stories = Story.controvertial
     else
-      Story.order(created_at: :desc)
+      Story.hot
     end
   end
 

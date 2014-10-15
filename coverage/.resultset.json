@@ -6,6 +6,7 @@
         1,
         1,
         1,
+        1,
         null,
         null,
         1,
@@ -255,7 +256,18 @@
         null,
         null
       ],
+      "/Users/administrator/Dropbox/launchacademy/storyboardy/app/models/addition.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/administrator/Dropbox/launchacademy/storyboardy/app/models/story.rb": [
+        1,
         1,
         1,
         1,
@@ -354,6 +366,6 @@
         null
       ]
     },
-    "timestamp": 1413409665
+    "timestamp": 1413416149
   }
 }

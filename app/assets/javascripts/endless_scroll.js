@@ -27,5 +27,5 @@ function pageHeight() {
 }
 
 $('document').ready(function(){
-  intervalID = setInterval(checkScroll, 500);
+  intervalID = setInterval(checkScroll, 250);
 })

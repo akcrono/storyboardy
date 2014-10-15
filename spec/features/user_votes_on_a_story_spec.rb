@@ -40,7 +40,7 @@ let(:user) { FactoryGirl.create(:user) }
     expect(page).to have_content '0'
   end
 
-  scenario "user changes a vote" do
+  scenario "user changes a story" do
     sign_in_as(user)
     visit story_path(story)
     #find("#thumb-up").click

@@ -5,7 +5,7 @@
     <% else %>
       <%= link_to "up", story_vote_path(story, 1), method: :put %>
     <% end %>
-    <div class="vote-count"><%= story.vote_score %></div>
+    <div class="vote-count"><%= story.score %></div>
     <% if current_user && current_user.voted_on?(story) == -1 %>
       <span class="vote-down">
         <%= link_to "DOWN", story_vote_path(story, -1), method: :put %>

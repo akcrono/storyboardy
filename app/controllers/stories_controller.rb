@@ -55,20 +55,7 @@ class StoriesController < ApplicationController
   def vote
     story = Story.find(params[:id])
     vote = story.votes.find_or_initialize_by(user: current_user)
-    user_vote = params[:vote_value].to_i
-
-    if user_vote == vote.value
-      story.increment!(:score, by = -user_vote)
-      vote.delete
-    else
-      if vote.value.nil?
-        story.increment!(:score, by = user_vote)
-      else
-        story.increment!(:score, by = user_vote * 2)
-      end
-      vote.value = params[:vote_value]
-      vote.save
-    end
+    vote.change_vote!(params[:vote_value].to_i)
 
     redirect_to stories_path
   end

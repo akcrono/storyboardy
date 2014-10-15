@@ -20,9 +20,12 @@ class Story < ActiveRecord::Base
     order(created_at: :desc)
   end
 
+  def self.top
+    Story.order(score: :desc, votes_count: :desc)
+  end
+
   def self.controversial
-    Story.select("stories.id, stories.title, stories.first_entry, stories.created_at, stories.user_id, count(votes.id) as votes_count").
-      joins(:votes).group("stories.id").order("votes_count DESC")
+    Story.order(votes_count: :desc, score: :desc)
   end
 
   def self.populate_index_with(query)
@@ -31,9 +34,9 @@ class Story < ActiveRecord::Base
     elsif query[:newest]
       @astories = Story.order(created_at: :desc)
     elsif query[:top]
-      @stories = Story.order(score: :desc)
+      Story.top
     elsif query[:controversial]
-      @stories = Story.order(votes_count: :desc, score: :desc)
+      Story.controversial
     else
       Story.hot
     end

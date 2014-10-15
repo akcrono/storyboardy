@@ -7,11 +7,6 @@ class Story < ActiveRecord::Base
   validates :first_entry, presence: true
   validates :user, presence: true
 
-
-  def vote_score
-    votes.sum(:value)
-  end
-
   def self.search(search)
     where('title ILIKE ?', "%#{search}%")
   end
@@ -32,7 +27,7 @@ class Story < ActiveRecord::Base
     if query[:search]
       Story.search(query[:search]).order(created_at: :desc)
     elsif query[:newest]
-      @astories = Story.order(created_at: :desc)
+      Story.order(created_at: :desc)
     elsif query[:top]
       Story.top
     elsif query[:controversial]

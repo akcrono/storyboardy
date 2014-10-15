@@ -31,11 +31,4 @@ class Vote < ActiveRecord::Base
       save
     end
   end
-
-  def create(params = {})
-    vote = Vote.new(params)
-    if vote.save
-      vote.story.increment!(score, by = params[:value])
-    end
-  end
 end

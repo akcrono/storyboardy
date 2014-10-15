@@ -33,7 +33,7 @@ describe Story do
       voteable_id: story2.id,
       voteable_type: "Story").change_vote!(1)
 
-    expect(Story.controversial.first).to eq(story1)
+    expect(Story.populate_index_with(controversial: true).first).to eq(story1)
   end
 
   it "should return highest score" do
@@ -49,6 +49,13 @@ describe Story do
       voteable_id: story2.id,
       voteable_type: "Story").change_vote!(1)
 
-    expect(Story.top.first).to eq(story2)
+    expect(Story.populate_index_with(top: true).first).to eq(story2)
+  end
+
+  it "should return newest" do
+    story1 = FactoryGirl.create(:story)
+    story2 = FactoryGirl.create(:story)
+
+    expect(Story.populate_index_with(newest: true).first).to eq(story2)
   end
 end

@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 20141015221234) do
     t.datetime "updated_at"
   end
 
+  add_index "additions", ["story_id"], name: "index_additions_on_story_id", using: :btree
+  add_index "additions", ["user_id"], name: "index_additions_on_user_id", using: :btree
+
   create_table "stories", force: true do |t|
     t.string   "title",                   null: false
     t.string   "first_entry",             null: false

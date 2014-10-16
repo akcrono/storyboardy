@@ -8,5 +8,8 @@ class CreateAdditions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :additions, :user_id
+    add_index :additions, :story_id
   end
 end

@@ -19,13 +19,13 @@ class Vote < ActiveRecord::Base
 
   def change_vote!(user_vote)
     if user_vote == value
-      voteable.increment!(:score, by = -user_vote)
+      voteable.increment!(:score, by = -user_vote) if voteable_type == "Story"
       delete
     else
       if value.nil?
-        voteable.increment!(:score, by = user_vote)
+        voteable.increment!(:score, by = user_vote) if voteable_type == "Story"
       else
-        voteable.increment!(:score, by = user_vote * 2)
+        voteable.increment!(:score, by = user_vote * 2) if voteable_type == "Story"
       end
       self.value = user_vote
       save

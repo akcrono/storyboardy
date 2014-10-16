@@ -38,6 +38,10 @@ class Story < ActiveRecord::Base
     end
   end
 
+  def best_submission
+    submissions.joins(:votes).group('submissions.id').order('SUM(votes.value)').last
+  end
+
   def timestamp
     created_at.strftime('%B %d %Y %H:%M:%S')
   end

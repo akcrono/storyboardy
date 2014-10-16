@@ -16,6 +16,10 @@ gem 'redcarpet'
 gem 'kaminari'
 gem 'spring',        group: :development
 gem 'rails_12factor', group: :production
+gem 'redis'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 
 group :development, :test do

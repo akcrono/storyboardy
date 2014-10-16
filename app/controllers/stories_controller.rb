@@ -14,6 +14,8 @@ class StoriesController < ApplicationController
     @story.user = current_user
     if @story.save
       flash[:notice] = "Your story was submitted."
+      # StoriesWorker.perform_in(5.hour, @story.id)
+      StoriesWorker.perform_async(@story.id)
       redirect_to story_path(@story)
     else
       flash[:notice] = "Invalid entry"
@@ -24,7 +26,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @submission = Submission.new
-    @submissions = @story.submissions.order(:created_at).page(params[:page]).per(10)
+    @submissions = @story.submissions.order(:created_at)
   end
 
   def edit

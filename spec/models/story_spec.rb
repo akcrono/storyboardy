@@ -58,4 +58,21 @@ describe Story do
 
     expect(Story.populate_index_with(newest: true).first).to eq(story2)
   end
+
+  it "returns the best submission" do
+    story = FactoryGirl.create(:story)
+    submission1 = FactoryGirl.create(:submission, story: story)
+    submission2 = FactoryGirl.create(:submission, story: story)
+    Vote.new(user_id: submission1.user.id,
+      voteable_id: submission1.id,
+      voteable_type: "Submission").change_vote!(1)
+    Vote.new(user_id: submission2.user.id,
+      voteable_id: submission1.id,
+      voteable_type: "Submission").change_vote!(-1)
+    Vote.new(user_id: submission1.user.id,
+      voteable_id: submission2.id,
+      voteable_type: "Submission").change_vote!(1)
+
+    expect(story.best_submission).to eq(submission2)
+  end
 end

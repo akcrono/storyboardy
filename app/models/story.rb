@@ -1,6 +1,7 @@
 class Story < ActiveRecord::Base
   belongs_to :user
   has_many :submissions, dependent: :destroy
+  has_many :additions, dependent: :destroy
   has_many :votes, as: :voteable
 
   validates :title, presence: true

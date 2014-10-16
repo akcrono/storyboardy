@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :stories
+  has_many :additions
   has_many :submissions
   validates :username,
     uniqueness: { case_sensitive: false },

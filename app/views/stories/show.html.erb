@@ -1,3 +1,4 @@
+<% provide(:title, @story.title) %>
 <div class="row">
   <div class="large-12 columns panel">
     <div class="row">
@@ -7,6 +8,9 @@
       <div class="large-11 columns">
         <h4><%= @story.title %></h4>
         <p><%= render_markdown(@story.first_entry) %></p>
+        <% @story.additions.each do |addition| %>
+          <p><%=  addition.body %></p>
+        <% end %>
       </div>
     </div>
 

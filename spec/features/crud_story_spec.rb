@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
 feature 'User creates a story' do
   let(:user) { FactoryGirl.create(:user) }
 

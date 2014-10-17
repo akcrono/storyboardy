@@ -1,8 +1,8 @@
-<div class="panel body_div row">
+<div class="panel  row">
   <div class="large-1 columns">
     <%= render template: "votes/show", locals: { story: story} %>
   </div>
-  <div class= "large-11 columns">
+  <div class= "large-11 columns body_div">
     <p class="body_text"> <%=  image_tag("check.bmp", class: "story_image", size: "20", tag: "andrew") %> <strong><%= link_to story.title, story_path(story), class: "body_link" %></strong></p>
     <p class="body_description"> <%=render_markdown(story.first_entry)%></p>
     <p class="body_lower_data"><%=story.user ? (link_to story.user.username, user_path(story.user)) : "[DELETED]"%> |

@@ -194,6 +194,7 @@
         9,
         9,
         9,
+        9,
         null,
         9,
         null,
@@ -333,10 +334,6 @@
         1,
         15,
         null,
-        null,
-        1,
-        0,
-        null,
         null
       ],
       "/Users/administrator/Dropbox/launchacademy/storyboardy/app/models/vote.rb": [
@@ -380,8 +377,9 @@
         1,
         null,
         1,
-        null,
         0,
+        0,
+        null,
         null,
         null,
         null,
@@ -394,6 +392,6 @@
         null
       ]
     },
-    "timestamp": 1413484870
+    "timestamp": 1413557389
   }
 }

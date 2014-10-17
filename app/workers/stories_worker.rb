@@ -10,7 +10,7 @@ class StoriesWorker
 
     #unless stop
       # perform_in(5.hour, @story.id)
-      StoriesWorker.perform_in(1.minute, story_id, user)
+      StoriesWorker.perform_in(1.hour, story_id, user)
     #end
   end
 

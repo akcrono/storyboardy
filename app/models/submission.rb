@@ -12,8 +12,4 @@ class Submission < ActiveRecord::Base
   def vote_score
     votes.sum(:value)
   end
-
-  def best_submission
-    order(vote_score).first
-  end
 end

@@ -42,6 +42,12 @@ class Story < ActiveRecord::Base
     submissions.joins(:votes).group('submissions.id').order('SUM(votes.value)').last
   end
 
+  def promote_best_submission!
+    best = best_submission
+    Addition.create(user_id: best.user_id, story_id: best.story_id, body: best.body, score: best.vote_score)
+    submissions.destroy_all
+  end
+
   def timestamp
     created_at.strftime('%B %d %Y %H:%M:%S')
   end

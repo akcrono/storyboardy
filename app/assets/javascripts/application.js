@@ -17,4 +17,3 @@
 
 $(function(){ $(document).foundation(); });
 
-});

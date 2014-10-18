@@ -49,4 +49,13 @@ let(:user) { FactoryGirl.create(:user) }
 
     expect(page).to have_content '-1'
   end
+
+  scenario "user is not logged in" do
+    visit story_path(story)
+    #find("#thumb-up").click
+    click_link "up"
+
+    expect(page).to have_content 'Log in'
+  end
+
 end

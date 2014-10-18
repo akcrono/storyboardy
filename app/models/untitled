@@ -1,0 +1,27 @@
+require 'rails_helper'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
+feature "should choose the best story as an addition, and delete other submissions for that story" do
+  scenario "that's for sure" do
+    story = FactoryGirl.create(:story)
+    other_story = FactoryGirl.create(:story)
+    submission1 = FactoryGirl.create(:submission, story: story)
+    submission2 = FactoryGirl.create(:submission, story: story)
+    submission3 = FactoryGirl.create(:submission, story: other_story)
+    Vote.new(user_id: submission1.user.id,
+      voteable_id: submission1.id,
+      voteable_type: "Submission").change_vote!(1)
+    Vote.new(user_id: submission2.user.id,
+      voteable_id: submission1.id,
+      voteable_type: "Submission").change_vote!(-1)
+    Vote.new(user_id: submission1.user.id,
+      voteable_id: submission2.id,
+      voteable_type: "Submission").change_vote!(1)
+    work = StoryWorker.new
+    work.perform(story.id)
+
+    expect(other_story.submissions).to include submission3
+  end
+end
+

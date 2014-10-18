@@ -14,6 +14,7 @@ class StoriesController < ApplicationController
     @story.user = current_user
     if @story.save
       flash[:notice] = "Your story was submitted."
+      StoriesWorker.perform_in(2.hours, @story.id)
       redirect_to story_path(@story)
     else
       flash[:notice] = "Invalid entry"
@@ -24,7 +25,8 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @submission = Submission.new
-    @submissions = @story.submissions.order(:created_at).page(params[:page]).per(10)
+    @submissions = @story.submissions.order(:created_at)
+    @additions = @story.additions.order(:created_at)
   end
 
   def edit
@@ -54,10 +56,13 @@ class StoriesController < ApplicationController
 
   def vote
     story = Story.find(params[:id])
-    vote = story.votes.find_or_initialize_by(user: current_user)
-    vote.change_vote!(params[:vote_value].to_i)
-
-    redirect_to stories_path
+    if current_user
+      vote = story.votes.find_or_initialize_by(user: current_user)
+      vote.change_vote!(params[:vote_value].to_i)
+      redirect_to stories_path
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   private

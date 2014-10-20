@@ -1,4 +1,6 @@
 require 'rails_helper'
+Sidekiq::Testing.inline!
+
 feature 'User creates a submission' do
   let(:story) { FactoryGirl.create(:story) }
   let(:user) { FactoryGirl.create(:user) }
@@ -18,6 +20,7 @@ feature 'User creates a submission' do
 
     expect(page).to have_content "A party?"
     expect(page).to have_content "Your entry was submitted."
+    expect(View.all).to_not be_empty
 
   end
 

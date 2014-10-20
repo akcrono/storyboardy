@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe StoriesController do
   describe "GET #index" do
     it "populates an array of stories" do
@@ -12,13 +13,4 @@ describe StoriesController do
       response.should render_template :index
     end
   end
-
-  # before do
-  #   user = FactoryGirl(:user)
-  #   request.env['warden'].stub :authenticate! => user
-  #   allow(controller).to receive(:current_user) { user }
-  # end
-
-
-
 end

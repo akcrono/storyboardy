@@ -14,7 +14,7 @@ class StoriesController < ApplicationController
     @story.user = current_user
     if @story.save
       flash[:notice] = "Your story was submitted."
-      StoriesWorker.perform_in(1.minutes, @story.id)
+      StoriesWorker.perform_in(5.hours, @story.id)
       redirect_to story_path(@story)
     else
       flash[:notice] = "Invalid entry"

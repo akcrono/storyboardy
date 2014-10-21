@@ -101,7 +101,7 @@ describe Story do
     expect(other_story.submissions).to include submission3
   end
 
-  it "chooses the best story as an addition, and delete other submissions for that story" do
+  it "chooses submissions to be seen by user" do
     user = FactoryGirl.create(:user)
     other_user = FactoryGirl.create(:user)
     story = FactoryGirl.create(:story)
@@ -120,8 +120,8 @@ describe Story do
       submission_id: submission3.id)
     View.create(user_id: user.id,
       submission_id: submission4.id)
-
     submissions = story.submissions_to_be_viewed(user.id)
+
     expect(submissions.first).to eq(submission1)
     expect(submissions.second).to eq(submission2)
     expect(submissions.third).to eq(submission3)

@@ -57,7 +57,7 @@ class Story < ActiveRecord::Base
                             left outer join views on views.submission_id=submissions.id
                             where submissions.story_id = #{id}
                             group by submissions.id
-                            order by count(views.user_id=3974), views_count")
+                            order by count(views.user_id=#{user_id}), views_count")
     # Needs refactor to avoid SQL injections
   end
 

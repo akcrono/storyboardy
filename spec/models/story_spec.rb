@@ -120,8 +120,8 @@ describe Story do
       submission_id: submission3.id)
     View.create(user_id: user.id,
       submission_id: submission4.id)
-
     submissions = story.submissions_to_be_viewed(user.id)
+
     expect(submissions.first).to eq(submission1)
     expect(submissions.second).to eq(submission2)
     expect(submissions.third).to eq(submission3)

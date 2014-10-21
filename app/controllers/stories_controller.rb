@@ -1,6 +1,8 @@
 class StoriesController < ApplicationController
   def index
-    @stories = Story.populate_index_with(params).page(params[:page])
+    @stories = Story.populate_index_with(params).
+      includes(:user, :additions).page(params[:page])
+      # still an n+1 query here
   end
 
   def new
@@ -25,7 +27,6 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @submission = Submission.new
-    @submissions = @story.submissions
     @additions = @story.additions.order(:created_at)
 
     if current_user

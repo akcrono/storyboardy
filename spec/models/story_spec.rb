@@ -101,7 +101,7 @@ describe Story do
     expect(other_story.submissions).to include submission3
   end
 
-  it "chooses the best story as an addition, and delete other submissions for that story" do
+  it "chooses submissions to be seen by user" do
     user = FactoryGirl.create(:user)
     other_user = FactoryGirl.create(:user)
     story = FactoryGirl.create(:story)

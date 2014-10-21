@@ -102,24 +102,30 @@ describe Story do
   end
 
   it "chooses the best story as an addition, and delete other submissions for that story" do
+    user = FactoryGirl.create(:user)
+    other_user = FactoryGirl.create(:user)
     story = FactoryGirl.create(:story)
-    other_story = FactoryGirl.create(:story)
-    submission1 = FactoryGirl.create(:submission, story: story, body: 'not seen')
-    submission2 = FactoryGirl.create(:submission, story: story, body: 'seen, 1 view')
-    submission3 = FactoryGirl.create(:submission, story: story, body: 'seen, most views')
-    View.create(user_id: submission1.user.id,
-      submission_id: submission1.id)
-    View.create(user_id: submission1.user.id,
-      submission_id: submission2.id)
-    View.create(user_id: submission1.user.id,
-      submission_id: submission3.id)
-    View.create(user_id: submission2.user.id,
-      submission_id: submission3.id)
 
-    submissions = story.submissions_to_be_viewed(submission3.user_id)
+    submission1 = FactoryGirl.create(:submission, story: story, body: 'not seen')
+    submission2 = FactoryGirl.create(:submission, story: story, body: 'not seen, more views')
+    submission3 = FactoryGirl.create(:submission, story: story, body: 'seen')
+    submission4 = FactoryGirl.create(:submission, story: story, body: 'seen, more views')
+
+    View.create(user_id: other_user.id,
+      submission_id: submission2.id)
+    View.create(user_id: other_user.id,
+      submission_id: submission4.id)
+
+    View.create(user_id: user.id,
+      submission_id: submission3.id)
+    View.create(user_id: user.id,
+      submission_id: submission4.id)
+
+    submissions = story.submissions_to_be_viewed(user.id)
     expect(submissions.first).to eq(submission1)
     expect(submissions.second).to eq(submission2)
     expect(submissions.third).to eq(submission3)
+    expect(submissions.last).to eq(submission4)
 
   end
 end

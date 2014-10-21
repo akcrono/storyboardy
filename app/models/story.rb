@@ -48,6 +48,19 @@ class Story < ActiveRecord::Base
     submissions.destroy_all
   end
 
+  def submissions_to_be_viewed(user_id)
+    # submissions.select("submissions.*, count(views.submission_id) as views_count").
+    #   joins("LEFT OUTER JOIN views on views.submission_id=submissions.id").
+    #   group("submissions.id").
+    #   order("views_count")
+    submissions.find_by_sql("select submissions.*, count(views.submission_id) as views_count from submissions
+                            left outer join views on views.submission_id=submissions.id
+                            where submissions.story_id = #{id}
+                            group by submissions.id
+                            order by count(views.user_id=3974), views_count")
+    # Needs refactor to avoid SQL injections
+  end
+
   def timestamp
     created_at.strftime('%B %d %Y %H:%M:%S')
   end

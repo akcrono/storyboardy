@@ -25,8 +25,15 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @submission = Submission.new
-    @submissions = @story.submissions.order(:created_at)
+    @submissions = @story.submissions
     @additions = @story.additions.order(:created_at)
+
+    if current_user
+      @submissions = @story.submissions_to_be_viewed(current_user.id)
+      SubmissionsWorker.perform_async(submissions_to_id(@submissions), current_user.id)
+    else
+      @submissions = @story.submissions
+    end
   end
 
   def edit
@@ -66,6 +73,12 @@ class StoriesController < ApplicationController
   end
 
   private
+
+  def submissions_to_id(submissions)
+    ids = []
+    submissions.each { |s| ids << s.id}
+    ids
+  end
 
   def story_params
     params.require(:story).permit(:title, :first_entry, :search)

@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :additions
   has_many :submissions
+  has_many :views, dependent: :destroy
+  has_many :votes, dependent: :destroy
   validates :username,
     uniqueness: { case_sensitive: false },
     presence: true

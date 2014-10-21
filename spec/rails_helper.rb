@@ -19,7 +19,9 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
+end
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!

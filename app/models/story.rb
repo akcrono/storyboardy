@@ -59,6 +59,7 @@ class Story < ActiveRecord::Base
                             group by submissions.id
                             order by count(views.user_id=3974), views_count")
     # Needs refactor to avoid SQL injections
+
   end
 
   def timestamp

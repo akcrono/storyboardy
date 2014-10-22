@@ -20,6 +20,7 @@ gem 'redis'
 gem 'sidekiq', '~> 3.2.5'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'mime-types', '~> 2.4.3'
 
 
 group :development, :test do

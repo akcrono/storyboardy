@@ -3,8 +3,12 @@ require 'story_importer'
 require 'submission_importer'
 require 'betterlorem'
 
-UserImporter.new('data/users.csv').import
-puts "Users loaded"
+# For development env only
+
+# UserImporter.new('data/users.csv').import
+# puts "Users loaded"
+
+
 StoryImporter.new('data/stories.csv').import
 puts "Stories loaded"
 

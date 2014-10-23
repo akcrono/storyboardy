@@ -21,7 +21,7 @@ gem 'sidekiq', '~> 3.2.5'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'mime-types', '~> 2.4.3'
-
+gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
   gem 'rails-erd', git: 'https://github.com/paulwittmann/rails-erd', branch: 'mavericks'

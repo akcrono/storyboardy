@@ -3,11 +3,10 @@ require_relative 'importer'
 class UserImporter < Importer
   def create(attributes)
 
-    if User.find_by(id: attributes[:id]).nil?
+    if User.find_by(username: attributes[:username]).nil?
       user = FactoryGirl.build(:user)
       user.username = attributes[:username]
       user.role = attributes[:role]
-      user.id = attributes[:id]
       user.save
     end
   end

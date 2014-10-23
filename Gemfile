@@ -22,6 +22,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'mime-types', '~> 2.4.3'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'betterlorem'
 
 group :development, :test do
   gem 'rails-erd', git: 'https://github.com/paulwittmann/rails-erd', branch: 'mavericks'
@@ -37,7 +38,7 @@ group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'shoulda-matchers'
-  gem 'betterlorem'
+
 end
 
 group :test do

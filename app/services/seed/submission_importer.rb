@@ -2,9 +2,9 @@ require_relative 'importer'
 
 class SubmissionImporter < Importer
   def create(attributes)
-    submission = Submission.find_or_initialize_by(id: attributes[:id])
-    submission.story_id = attributes[:story_id]
-    submission.user_id = attributes[:user_id]
+    submission = Submission.new
+    submission.story_id = Story.all.sample
+    submission.user_id = User.all.sample
     submission.body = attributes[:body]
 
     submission.save

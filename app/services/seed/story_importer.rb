@@ -2,9 +2,9 @@ require_relative 'importer'
 
 class StoryImporter < Importer
   def create(attributes)
-    story = Story.find_or_initialize_by(id: attributes[:id])
+    story = Story.new
     story.title = attributes[:title]
-    story.user_id = attributes[:user_id]
+    story.user_id = User.all.sample.id
     story.first_entry = attributes[:first_entry]
 
     story.save

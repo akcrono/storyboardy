@@ -17,7 +17,7 @@ gem 'kaminari'
 gem 'spring',        group: :development
 gem 'rails_12factor', group: :production
 gem 'redis'
-gem 'sidekiq', '~> 3.2.5'
+gem 'sidekiq', '~> 3.2.6'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'mime-types', '~> 2.4.3'

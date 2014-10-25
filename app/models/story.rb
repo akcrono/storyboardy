@@ -49,13 +49,21 @@ class Story < ActiveRecord::Base
   end
 
   def submissions_to_be_viewed(user_id)
-    #Fails test w/o storage in variable
-    shown_submissions = submissions.find_by_sql("select submissions.*, count(views.submission_id) as views_count from submissions
-                            left outer join views on views.submission_id=submissions.id
-                            where submissions.story_id = #{id}
-                            group by submissions.id
-                            order by count(views.user_id=#{user_id}), views_count")
-    shown_submissions
+    submissions.find_by_sql("select submissions.*,
+              count(views.submission_id) as views_count,
+              (select count(*) as counted from views
+                where views.user_id=#{user_id} and views.submission_id=submissions.id group by id)
+              from submissions
+              left outer join views on views.submission_id=submissions.id
+              where submissions.story_id = #{id}
+              group by submissions.id
+              order by counted desc, views_count")
+    # shown_submissions = submissions.find_by_sql("select submissions.*, count(views.submission_id) as views_count from submissions
+    #                         left outer join views on views.submission_id=submissions.id
+    #                         where submissions.story_id = #{id}
+    #                         group by submissions.id
+    #                         order by count(views.user_id=#{user_id}), views_count")
+
     # Needs refactor to avoid SQL injections
   end
 

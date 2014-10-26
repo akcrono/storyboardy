@@ -5,8 +5,8 @@ require 'betterlorem'
 
 # For development env only
 
-# UserImporter.new('data/users.csv').import
-# puts "Users loaded"
+UserImporter.new('data/users.csv').import
+puts "Users loaded"
 
 
 StoryImporter.new('data/stories.csv').import

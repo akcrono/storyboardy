@@ -49,14 +49,17 @@ class Story < ActiveRecord::Base
   end
 
   def submissions_to_be_viewed(user_id)
-    submissions.find_by_sql("select submissions.*,
+    submissions.find_by_sql("select submissions.*, users.username,
               count(views.submission_id) as views_count,
               (select count(*) from views
-                where views.user_id=#{user_id} and views.submission_id=submissions.id group by id) as counted
+                where views.user_id=#{user_id} and views.submission_id=submissions.id group by id) as counted,
+              (select sum(value) as score from votes
+                where voteable_type='Submission' and voteable_id=submissions.id) as score
               from submissions
               left outer join views on views.submission_id=submissions.id
+              join users on submissions.user_id=users.id
               where submissions.story_id = #{id}
-              group by submissions.id
+              group by submissions.id, users.username
               order by counted desc, views_count")
     # shown_submissions = submissions.find_by_sql("select submissions.*, count(views.submission_id) as views_count from submissions
     #                         left outer join views on views.submission_id=submissions.id

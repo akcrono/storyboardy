@@ -39,8 +39,8 @@ class StoriesController < ApplicationController
                       where voteable_type='Submission' and voteable_id=submissions.id) as score
                     from submissions
                     join users on users.id=submissions.user_id
+                    where submissions.story_id = #{@story.id}
                     group by submissions.id, users.username")
-        binding.pry
     end
   end
 

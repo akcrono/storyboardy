@@ -11,11 +11,4 @@ class Submission < ActiveRecord::Base
   def vote_score
     votes.sum(:value)
   end
-
-  def give_submissions
-    select("submissions.*, count(views.submission_id) as views_count").
-      joins(:views).
-      group("submissions.id").
-      order("count(views.submission_id)")
-  end
 end

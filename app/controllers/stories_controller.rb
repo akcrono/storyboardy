@@ -27,13 +27,20 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @submission = Submission.new
-    @additions = @story.additions.order(:created_at)
+    @additions = @story.additions.order(created_at: :desc)
 
     if current_user
       @submissions = @story.submissions_to_be_viewed(current_user.id)
       SubmissionsWorker.perform_async(submissions_to_id(@submissions), current_user.id)
     else
-      @submissions = @story.submissions
+      @submissions = @story.submissions.
+        find_by_sql("SELECT submissions.*, users.username,
+                    (select sum(value) as score from votes
+                      where voteable_type='Submission' and voteable_id=submissions.id) as score
+                    from submissions
+                    join users on users.id=submissions.user_id
+                    where submissions.story_id = #{@story.id}
+                    group by submissions.id, users.username")
     end
   end
 

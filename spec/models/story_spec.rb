@@ -115,6 +115,8 @@ describe Story do
       submission_id: submission2.id)
     View.create(user_id: other_user.id,
       submission_id: submission4.id)
+    View.create(user_id: story.user.id,
+      submission_id: submission2.id)
 
     View.create(user_id: user.id,
       submission_id: submission3.id)

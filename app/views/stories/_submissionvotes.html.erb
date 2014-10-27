@@ -5,7 +5,7 @@
     <% else %>
       <%= link_to "up", story_submission_vote_path(locals[:submission].story_id, locals[:submission], 1), method: :put, class: "submission-upvote" %>
     <% end %>
-    <div class="vote-count"><%= locals[:submission].vote_score %></div>
+    <div class="vote-count"><%= locals[:submission].score ? locals[:submission].score : 0%></div>
     <% if current_user && current_user.voted_on?(locals[:submission], "Submission") == -1 %>
       <span class="vote-down">
         <%= link_to "DOWN", story_submission_vote_path(locals[:submission].story_id, locals[:submission], -1), method: :put, class: "submission-downvote" %>

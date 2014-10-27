@@ -23,7 +23,7 @@
     </div>
     <div class="large-11 columns">
       <%= render_markdown(submission.body) %>
-      <p class="body_lower_data"> by <%=submission.user ? (link_to submission.user.username, user_path(submission.user)) : "[DELETED]"%>
+      <p class="body_lower_data"> by <%=submission.username!="DELETED" ? (link_to submission.username, user_path(submission.user_id)) : "[DELETED]"%>
         <% if current_user && (current_user.admin? || current_user.id == submission.user_id) %>
         |
         <%= link_to 'Delete', story_submission_path(@story, submission), method: :delete, data: { confirm: 'Are you sure?'} %><br>

@@ -22,4 +22,13 @@ describe View do
     expect(invalid_view.valid?).to eq(false)
   end
 
+  it "is destroyed when submission is destroyed" do
+    submission = FactoryGirl.create(:submission)
+    view = FactoryGirl.create(:view, submission: submission)
+    id = view.id
+    Submission.destroy_all
+
+    expect(View.where(id: id).empty?).to eq(true)
+  end
+
 end
